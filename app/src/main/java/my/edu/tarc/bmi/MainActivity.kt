@@ -28,9 +28,6 @@ class MainActivity : AppCompatActivity() {
         //Setup a local storage
         val sharedPreferences = this.getSharedPreferences("LocalStorage", MODE_PRIVATE)
 
-
-
-
         buttonCalculate.setOnClickListener {
             //BMI = weight / height in meters power 2
             if(editTextWeight.text.isEmpty() ){ //&& editTextWeight.text.toString().toInt() > 0
@@ -84,9 +81,6 @@ class MainActivity : AppCompatActivity() {
                 spStatus = "R.string.over"
             }
 
-            sharedPreferences.edit().putString("Image",spImage ).apply()
-            sharedPreferences.edit().putString("Status", spStatus).apply()
-            //sharedPreferences.edit().
         }
 
         buttonReset.setOnClickListener {
@@ -98,12 +92,22 @@ class MainActivity : AppCompatActivity() {
         }
 
         buttonHistory.setOnClickListener{
-//            imageViewBMI.setImageResource()
-//            textViewBMI.text = String.format("%s : %.2f",getString(R.string.bmi), sharedPreferences.getFloat("BMI", 0F))
+            val spBMI = sharedPreferences.getFloat("BMI",0F)
 
+            if(spBMI < 18.5){
+                imageViewBMI.setImageResource(R.drawable.under)
+                textViewStatus.text = String.format("%s : %s",getString(R.string.status),getString(R.string.under))
+            } else if(spBMI in 18.5..24.9){
+                imageViewBMI.setImageResource(R.drawable.normal)
+                textViewStatus.text = String.format("%s : %s",getString(R.string.status),getString(R.string.normal))
+            } else if(spBMI >= 25){
+                imageViewBMI.setImageResource(R.drawable.over)
+                textViewStatus.text = String.format("%s : %s",getString(R.string.status),getString(R.string.over))
+            }
 
-
-
+            textViewBMI.text = String.format("%s : %.2f",getString(R.string.bmi),spBMI)
+            editTextHeight.setText(sharedPreferences.getFloat("Height", 0F).toString())
+            editTextWeight.setText(sharedPreferences.getFloat("Weight", 0F).toString())
         }
 
     }
