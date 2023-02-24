@@ -1,0 +1,14 @@
+<resources>
+    <string name="app_name">BMI</string>
+    <string name="bmi">Body Mass Index</string>
+    <string name="status">Status</string>
+    <string name="hint_weight">Enter weight (kg)</string>
+    <string name="hint_height">Enter height (cm)</string>
+    <string name="calculate">Calculate</string>
+    <string name="reset">Reset</string>
+    <string name="history">History</string>
+    <string name="value_required">Value Required</string>
+    <string name="under">Underweight</string>
+    <string name="normal">Normal</string>
+    <string name="over">OverWeight</string>
+</resources>
